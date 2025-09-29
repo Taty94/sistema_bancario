@@ -1,0 +1,1290 @@
+{
+	"info": {
+		"_postman_id": "0f689dc0-c353-4f57-9129-d1cc2c540d07",
+		"name": "Ejercicio Practico",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29891902",
+		"_collection_link": "https://cia444.postman.co/workspace/CIA~bbc92488-e53f-4e48-b08e-f51663d5deac/collection/29891902-0f689dc0-c353-4f57-9129-d1cc2c540d07?action=share&source=collection_link&creator=29891902"
+	},
+	"item": [
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "Create Cliente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"nombre\": \"Jahir\",\n        \"apellido\": \"Coque\",\n        \"genero\": \"Masculino\",\n        \"edad\": 18,\n        \"tipoIdentificacion\": \"Cedula\",\n        \"identificacion\": \"1710004901\",\n        \"callePrincipal\": \"Turubamba\",\n        \"calleSecundaria\": \"Moro Moro\",\n        \"ciudad\": \"Quito\",\n        \"provincia\": \"Pichincha\",\n        \"numeroCasa\": \"SN\",\n        \"contrasena\": \"786810\",\n        \"telefono\": \"0909095810\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Cliente OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"nombre\": \"Jahir\",\n        \"apellido\": \"Coque\",\n        \"genero\": \"Masculino\",\n        \"edad\": 18,\n        \"tipoIdentificacion\": \"Cedula\",\n        \"identificacion\": \"1710004901\",\n        \"callePrincipal\": \"Turubamba\",\n        \"calleSecundaria\": \"Moro Moro\",\n        \"ciudad\": \"Quito\",\n        \"provincia\": \"Pichincha\",\n        \"numeroCasa\": \"SN\",\n        \"contrasena\": \"786810\",\n        \"telefono\": \"0909095810\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/clientes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"clientes"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Sep 2025 18:21:19 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 3,\n        \"nombre\": \"Jahir\",\n        \"apellido\": \"Coque\",\n        \"genero\": \"Masculino\",\n        \"edad\": 18,\n        \"tipoIdentificacion\": \"Cedula\",\n        \"identificacion\": \"1710004901\",\n        \"callePrincipal\": \"Turubamba\",\n        \"calleSecundaria\": \"Moro Moro\",\n        \"numeroCasa\": \"SN\",\n        \"ciudad\": \"Quito\",\n        \"provincia\": \"Pichincha\",\n        \"telefono\": \"0909095810\",\n        \"clienteId\": \"C9724\",\n        \"contrasena\": \"786810\",\n        \"estado\": true\n    },\n    \"message\": \"Cliente creado exitósamente\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Obtener Cliente por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/clientes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Obtener Cliente por Id OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8082/clientes/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"clientes",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Sep 2025 18:21:32 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 3,\n        \"nombre\": \"Jahir\",\n        \"apellido\": \"Coque\",\n        \"genero\": \"Masculino\",\n        \"edad\": 18,\n        \"tipoIdentificacion\": \"Cedula\",\n        \"identificacion\": \"1710004901\",\n        \"callePrincipal\": \"Turubamba\",\n        \"calleSecundaria\": \"Moro Moro\",\n        \"numeroCasa\": \"SN\",\n        \"ciudad\": \"Quito\",\n        \"provincia\": \"Pichincha\",\n        \"telefono\": \"0909095810\",\n        \"clienteId\": \"C9724\",\n        \"contrasena\": \"786810\",\n        \"estado\": true\n    },\n    \"message\": \"Cliente encontrado\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Actualizar Cliente",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": {\r\n        \"nombre\": \"Jahir\",\r\n        \"apellido\": \"Coque Actualizado\",\r\n        \"callePrincipal\": \"Turubamba\",\r\n        \"calleSecundaria\": \"Moro Moro\",\r\n        \"ciudad\": \"Quito\",\r\n        \"provincia\": \"Pichincha\",\r\n        \"numeroCasa\": \"SN\",\r\n        \"contrasena\": \"786810\",\r\n        \"telefono\": \"0909095810\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/clientes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Actualizar Cliente OK",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"nombre\": \"Jahir\",\n        \"apellido\": \"Coque Actualizado\",\n        \"callePrincipal\": \"Turubamba\",\n        \"calleSecundaria\": \"Moro Moro\",\n        \"ciudad\": \"Quito\",\n        \"provincia\": \"Pichincha\",\n        \"numeroCasa\": \"SN\",\n        \"contrasena\": \"786810\",\n        \"telefono\": \"0909095810\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/clientes/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"clientes",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Sep 2025 18:22:12 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 3,\n        \"nombre\": \"Jahir\",\n        \"apellido\": \"Coque Actualizado\",\n        \"genero\": \"Masculino\",\n        \"edad\": 18,\n        \"tipoIdentificacion\": \"Cedula\",\n        \"identificacion\": \"1710004901\",\n        \"callePrincipal\": \"Turubamba\",\n        \"calleSecundaria\": \"Moro Moro\",\n        \"numeroCasa\": \"SN\",\n        \"ciudad\": \"Quito\",\n        \"provincia\": \"Pichincha\",\n        \"telefono\": \"0909095810\",\n        \"clienteId\": \"C9724\",\n        \"contrasena\": \"786810\",\n        \"estado\": true\n    },\n    \"message\": \"Cliente actualizado\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Eliminar Cliente",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8082/clientes/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"clientes",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Eliminar Cliente OK",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8082/clientes/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"clientes",
+										"3"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 28 Sep 2025 18:23:07 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Listar Clientes - Pagination",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8082/clientes?page=0&size=5&estado=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"clientes"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								},
+								{
+									"key": "estado",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Listar Clientes - PorEstado - ok",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8082/clientes?page=0&size=5&estado=true",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"clientes"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "5"
+										},
+										{
+											"key": "estado",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Sep 2025 18:22:22 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"nombre\": \"Taty\",\n            \"apellido\": \"Montenegro Actualizado\",\n            \"genero\": \"Masculino\",\n            \"edad\": 29,\n            \"tipoIdentificacion\": \"Cedula\",\n            \"identificacion\": \"1721795100\",\n            \"callePrincipal\": \"Cusubamba\",\n            \"calleSecundaria\": \"Juan J\",\n            \"numeroCasa\": \"S26-108\",\n            \"ciudad\": \"Quito\",\n            \"provincia\": \"Pichincha\",\n            \"telefono\": \"0989295810\",\n            \"clienteId\": \"C2282\",\n            \"contrasena\": \"12346\",\n            \"estado\": true\n        },\n        {\n            \"id\": 3,\n            \"nombre\": \"Jahir\",\n            \"apellido\": \"Coque Actualizado\",\n            \"genero\": \"Masculino\",\n            \"edad\": 18,\n            \"tipoIdentificacion\": \"Cedula\",\n            \"identificacion\": \"1710004901\",\n            \"callePrincipal\": \"Turubamba\",\n            \"calleSecundaria\": \"Moro Moro\",\n            \"numeroCasa\": \"SN\",\n            \"ciudad\": \"Quito\",\n            \"provincia\": \"Pichincha\",\n            \"telefono\": \"0909095810\",\n            \"clienteId\": \"C9724\",\n            \"contrasena\": \"786810\",\n            \"estado\": true\n        }\n    ],\n    \"pagination\": {\n        \"page\": 0,\n        \"size\": 5,\n        \"totalElements\": 2,\n        \"totalPages\": 1,\n        \"first\": true,\n        \"last\": true\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cuentas",
+			"item": [
+				{
+					"name": "Crear Cuenta",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"data\": {\n    \"tipoCuenta\": \"Ahorros\",\n    \"saldoInicial\": 50,\n    \"idCliente\": 1\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/cuentas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"cuentas"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Crear Cuenta Ok",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"data\": {\n    \"tipoCuenta\": \"Ahorros\",\n    \"saldoInicial\": 50,\n    \"idCliente\": 3\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/cuentas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"cuentas"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Sep 2025 18:23:55 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 4,\n        \"idCliente\": 3,\n        \"nombreCliente\": \"Jahir Coque Actualizado\",\n        \"numeroCuenta\": \"197860518605\",\n        \"tipoCuenta\": \"Ahorros\",\n        \"saldoInicial\": 50,\n        \"saldoActual\": 50,\n        \"estado\": true\n    },\n    \"message\": \"Cuenta creada exitósamente\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Obtener Cuenta por Numero",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8082/cuentas/194164365423",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"cuentas",
+								"194164365423"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Obtener Cuenta por Numero Ok",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8082/cuentas/197860518605",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"cuentas",
+										"197860518605"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Sep 2025 18:24:12 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 4,\n        \"idCliente\": 3,\n        \"nombreCliente\": \"Jahir Coque Actualizado\",\n        \"numeroCuenta\": \"197860518605\",\n        \"tipoCuenta\": \"Ahorros\",\n        \"saldoInicial\": 50,\n        \"saldoActual\": 50,\n        \"estado\": true\n    },\n    \"message\": \"Cuenta encontrada\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Actualizar Cuenta",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"data\": {\n    \"tipoCuenta\": \"Corriente\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/cuentas/194164365423",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"cuentas",
+								"194164365423"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Actualizar Cuenta OK",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"data\": {\n    \"tipoCuenta\": \"Corriente\"\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/cuentas/197860518605",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"cuentas",
+										"197860518605"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Sep 2025 18:25:19 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 4,\n        \"idCliente\": 3,\n        \"nombreCliente\": \"Jahir Coque Actualizado\",\n        \"numeroCuenta\": \"197860518605\",\n        \"tipoCuenta\": \"Corriente\",\n        \"saldoInicial\": 50,\n        \"saldoActual\": 50,\n        \"estado\": true\n    },\n    \"message\": \"Cuenta actualizada\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Eliminar Cuenta",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8082/cuentas/192265409229",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"cuentas",
+								"192265409229"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Eliminar Cuenta OK",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8082/cuentas/197860518605",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"cuentas",
+										"197860518605"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 28 Sep 2025 18:26:57 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Listar Cuentas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8082/cuentas?page=0&size=5&clienteId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"cuentas"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								},
+								{
+									"key": "clienteId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Listar Cuentas OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8082/cuentas?page=0&size=5&clienteId=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"cuentas"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "5"
+										},
+										{
+											"key": "clienteId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Sep 2025 18:26:14 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"idCliente\": 1,\n            \"nombreCliente\": \"Taty Montenegro Actualizado\",\n            \"numeroCuenta\": \"196313809437\",\n            \"tipoCuenta\": \"Ahorros\",\n            \"saldoInicial\": 10,\n            \"saldoActual\": 35,\n            \"estado\": true\n        },\n        {\n            \"id\": 2,\n            \"idCliente\": 1,\n            \"nombreCliente\": \"Taty Montenegro Actualizado\",\n            \"numeroCuenta\": \"192389192136\",\n            \"tipoCuenta\": \"Corriente\",\n            \"saldoInicial\": 10,\n            \"saldoActual\": 8,\n            \"estado\": true\n        }\n    ],\n    \"pagination\": {\n        \"page\": 0,\n        \"size\": 5,\n        \"totalElements\": 2,\n        \"totalPages\": 1,\n        \"first\": true,\n        \"last\": true\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Movimientos",
+			"item": [
+				{
+					"name": "Crear Movimiento",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": {\r\n    \"tipoMovimiento\": \"Débito\",\r\n    \"valor\": \"3.50\",\r\n    \"descripcion\": \"Aprendiendo a usar mi cuenta\",\r\n    \"numeroCuenta\": \"192265409229\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/movimientos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"movimientos"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Crear Movimiento OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"data\": {\n    \"tipoMovimiento\": \"Débito\",\n    \"valor\": 2.50,\n    \"descripcion\": \"Aprendiendo a usar mi cuenta\",\n    \"numeroCuenta\": \"197860518605\"\n  }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/movimientos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"movimientos"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Sep 2025 18:34:48 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 18,\n        \"idCuenta\": 4,\n        \"numeroCuenta\": \"197860518605\",\n        \"nombreCliente\": \"Jahir Coque Actualizado\",\n        \"fecha\": \"2025-09-28T18:34:47.1133757Z\",\n        \"tipoMovimiento\": \"Débito\",\n        \"valor\": 2.5,\n        \"saldoAnterior\": 50,\n        \"saldoPosterior\": 47.5,\n        \"descripcion\": \"Aprendiendo a usar mi cuenta\",\n        \"referencia\": null,\n        \"estado\": true\n    },\n    \"message\": \"Movimiento creado exitósamente\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Listar Movimientos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/movimientos?page=0&size=10&numeroCuenta=192265409229",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"movimientos"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								},
+								{
+									"key": "numeroCuenta",
+									"value": "192265409229"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Listar Movimientos OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8082/movimientos?page=0&size=10&numeroCuenta=196313809437",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"movimientos"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "numeroCuenta",
+											"value": "196313809437"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Sep 2025 18:36:31 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 16,\n            \"idCuenta\": 1,\n            \"numeroCuenta\": \"196313809437\",\n            \"nombreCliente\": \"Taty Montenegro Actualizado\",\n            \"fecha\": \"2025-09-28T14:01:10.442365Z\",\n            \"tipoMovimiento\": \"Débito\",\n            \"valor\": 11,\n            \"saldoAnterior\": 46,\n            \"saldoPosterior\": 35,\n            \"descripcion\": \"Débito en efectivo 11\",\n            \"referencia\": null,\n            \"estado\": true\n        },\n        {\n            \"id\": 15,\n            \"idCuenta\": 1,\n            \"numeroCuenta\": \"196313809437\",\n            \"nombreCliente\": \"Taty Montenegro Actualizado\",\n            \"fecha\": \"2025-09-28T13:30:27.260743Z\",\n            \"tipoMovimiento\": \"Débito\",\n            \"valor\": 11,\n            \"saldoAnterior\": 57,\n            \"saldoPosterior\": 46,\n            \"descripcion\": \"Débito en efectivo 11\",\n            \"referencia\": null,\n            \"estado\": true\n        },\n        {\n            \"id\": 14,\n            \"idCuenta\": 1,\n            \"numeroCuenta\": \"196313809437\",\n            \"nombreCliente\": \"Taty Montenegro Actualizado\",\n            \"fecha\": \"2025-09-28T13:26:32.268303Z\",\n            \"tipoMovimiento\": \"Débito\",\n            \"valor\": 11,\n            \"saldoAnterior\": 68,\n            \"saldoPosterior\": 57,\n            \"descripcion\": \"Débito en efectivo 11\",\n            \"referencia\": null,\n            \"estado\": true\n        },\n        {\n            \"id\": 13,\n            \"idCuenta\": 1,\n            \"numeroCuenta\": \"196313809437\",\n            \"nombreCliente\": \"Taty Montenegro Actualizado\",\n            \"fecha\": \"2025-09-28T13:17:35.880866Z\",\n            \"tipoMovimiento\": \"Débito\",\n            \"valor\": 13,\n            \"saldoAnterior\": 81,\n            \"saldoPosterior\": 68,\n            \"descripcion\": \"Débito en efectivo 10\",\n            \"referencia\": null,\n            \"estado\": true\n        },\n        {\n            \"id\": 12,\n            \"idCuenta\": 1,\n            \"numeroCuenta\": \"196313809437\",\n            \"nombreCliente\": \"Taty Montenegro Actualizado\",\n            \"fecha\": \"2025-09-28T13:11:32.024043Z\",\n            \"tipoMovimiento\": \"Débito\",\n            \"valor\": 6,\n            \"saldoAnterior\": 93,\n            \"saldoPosterior\": 87,\n            \"descripcion\": \"Débito en efectivo 6\",\n            \"referencia\": null,\n            \"estado\": true\n        },\n        {\n            \"id\": 11,\n            \"idCuenta\": 1,\n            \"numeroCuenta\": \"196313809437\",\n            \"nombreCliente\": \"Taty Montenegro Actualizado\",\n            \"fecha\": \"2025-09-28T13:06:09.542818Z\",\n            \"tipoMovimiento\": \"Débito\",\n            \"valor\": 7,\n            \"saldoAnterior\": 100,\n            \"saldoPosterior\": 93,\n            \"descripcion\": \"Débito en efectivo 7\",\n            \"referencia\": null,\n            \"estado\": true\n        },\n        {\n            \"id\": 10,\n            \"idCuenta\": 1,\n            \"numeroCuenta\": \"196313809437\",\n            \"nombreCliente\": \"Taty Montenegro Actualizado\",\n            \"fecha\": \"2025-09-28T12:57:25.79414Z\",\n            \"tipoMovimiento\": \"Débito\",\n            \"valor\": 5,\n            \"saldoAnterior\": 105,\n            \"saldoPosterior\": 100,\n            \"descripcion\": \"Débito en efectivo 5\",\n            \"referencia\": null,\n            \"estado\": true\n        },\n        {\n            \"id\": 9,\n            \"idCuenta\": 1,\n            \"numeroCuenta\": \"196313809437\",\n            \"nombreCliente\": \"Taty Montenegro Actualizado\",\n            \"fecha\": \"2025-09-28T12:50:52.867527Z\",\n            \"tipoMovimiento\": \"Débito\",\n            \"valor\": 25,\n            \"saldoAnterior\": 130,\n            \"saldoPosterior\": 105,\n            \"descripcion\": \"Débito en efectivo 3\",\n            \"referencia\": null,\n            \"estado\": true\n        },\n        {\n            \"id\": 8,\n            \"idCuenta\": 1,\n            \"numeroCuenta\": \"196313809437\",\n            \"nombreCliente\": \"Taty Montenegro Actualizado\",\n            \"fecha\": \"2025-09-28T12:49:46.359306Z\",\n            \"tipoMovimiento\": \"Débito\",\n            \"valor\": 20,\n            \"saldoAnterior\": 150,\n            \"saldoPosterior\": 130,\n            \"descripcion\": \"Débito en efectivo 3\",\n            \"referencia\": null,\n            \"estado\": true\n        },\n        {\n            \"id\": 7,\n            \"idCuenta\": 1,\n            \"numeroCuenta\": \"196313809437\",\n            \"nombreCliente\": \"Taty Montenegro Actualizado\",\n            \"fecha\": \"2025-09-28T12:40:34.388872Z\",\n            \"tipoMovimiento\": \"Débito\",\n            \"valor\": 20,\n            \"saldoAnterior\": 170,\n            \"saldoPosterior\": 150,\n            \"descripcion\": \"Débito en efectivo 2\",\n            \"referencia\": null,\n            \"estado\": true\n        }\n    ],\n    \"pagination\": {\n        \"page\": 0,\n        \"size\": 10,\n        \"totalElements\": 16,\n        \"totalPages\": 2,\n        \"first\": true,\n        \"last\": false\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Reporte",
+			"item": [
+				{
+					"name": "Generar Reporte",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/reportes?clienteId=1&fechaInicio=2025-09-27&fechaFin=2025-09-29&formato=pdf",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"reportes"
+							],
+							"query": [
+								{
+									"key": "clienteId",
+									"value": "1"
+								},
+								{
+									"key": "fechaInicio",
+									"value": "2025-09-27"
+								},
+								{
+									"key": "fechaFin",
+									"value": "2025-09-29"
+								},
+								{
+									"key": "formato",
+									"value": "pdf"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Generar Reporte JSON OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8082/reportes?clienteId=1&fechaInicio=2025-09-27&fechaFin=2025-09-28&formato=json",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"reportes"
+									],
+									"query": [
+										{
+											"key": "clienteId",
+											"value": "1"
+										},
+										{
+											"key": "fechaInicio",
+											"value": "2025-09-27"
+										},
+										{
+											"key": "fechaFin",
+											"value": "2025-09-28"
+										},
+										{
+											"key": "formato",
+											"value": "json"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Sep 2025 18:37:07 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"fechaInicio\": \"2025-09-27\",\n        \"fechaFin\": \"2025-09-28\",\n        \"cliente\": {\n            \"nombre\": \"Taty Montenegro Actualizado\",\n            \"clienteId\": \"C2282\"\n        },\n        \"resumenGeneral\": {\n            \"totalCreditos\": 1800,\n            \"totalDebitos\": 1771,\n            \"saldoFinal\": 43\n        },\n        \"cuentas\": [\n            {\n                \"numeroCuenta\": \"196313809437\",\n                \"tipoCuenta\": \"Ahorros\",\n                \"resumenCuenta\": {\n                    \"saldoInicial\": 10,\n                    \"totalMovimientos\": 16,\n                    \"saldoFinal\": \"35.00\"\n                },\n                \"movimientos\": [\n                    {\n                        \"id\": \"16\",\n                        \"idCuenta\": null,\n                        \"numeroCuenta\": \"196313809437\",\n                        \"nombreCliente\": \"Taty Montenegro Actualizado\",\n                        \"fecha\": \"2025-09-28T14:01:10.442365Z\",\n                        \"tipoMovimiento\": \"Débito\",\n                        \"valor\": \"11.00\",\n                        \"saldoAnterior\": \"46.00\",\n                        \"saldoPosterior\": \"35.00\",\n                        \"descripcion\": \"Débito en efectivo 11\",\n                        \"referencia\": null,\n                        \"estado\": \"true\"\n                    },\n                    {\n                        \"id\": \"15\",\n                        \"idCuenta\": null,\n                        \"numeroCuenta\": \"196313809437\",\n                        \"nombreCliente\": \"Taty Montenegro Actualizado\",\n                        \"fecha\": \"2025-09-28T13:30:27.260743Z\",\n                        \"tipoMovimiento\": \"Débito\",\n                        \"valor\": \"11.00\",\n                        \"saldoAnterior\": \"57.00\",\n                        \"saldoPosterior\": \"46.00\",\n                        \"descripcion\": \"Débito en efectivo 11\",\n                        \"referencia\": null,\n                        \"estado\": \"true\"\n                    },\n                    {\n                        \"id\": \"14\",\n                        \"idCuenta\": null,\n                        \"numeroCuenta\": \"196313809437\",\n                        \"nombreCliente\": \"Taty Montenegro Actualizado\",\n                        \"fecha\": \"2025-09-28T13:26:32.268303Z\",\n                        \"tipoMovimiento\": \"Débito\",\n                        \"valor\": \"11.00\",\n                        \"saldoAnterior\": \"68.00\",\n                        \"saldoPosterior\": \"57.00\",\n                        \"descripcion\": \"Débito en efectivo 11\",\n                        \"referencia\": null,\n                        \"estado\": \"true\"\n                    },\n                    {\n                        \"id\": \"13\",\n                        \"idCuenta\": null,\n                        \"numeroCuenta\": \"196313809437\",\n                        \"nombreCliente\": \"Taty Montenegro Actualizado\",\n                        \"fecha\": \"2025-09-28T13:17:35.880866Z\",\n                        \"tipoMovimiento\": \"Débito\",\n                        \"valor\": \"13.00\",\n                        \"saldoAnterior\": \"81.00\",\n                        \"saldoPosterior\": \"68.00\",\n                        \"descripcion\": \"Débito en efectivo 10\",\n                        \"referencia\": null,\n                        \"estado\": \"true\"\n                    },\n                    {\n                        \"id\": \"12\",\n                        \"idCuenta\": null,\n                        \"numeroCuenta\": \"196313809437\",\n                        \"nombreCliente\": \"Taty Montenegro Actualizado\",\n                        \"fecha\": \"2025-09-28T13:11:32.024043Z\",\n                        \"tipoMovimiento\": \"Débito\",\n                        \"valor\": \"6.00\",\n                        \"saldoAnterior\": \"93.00\",\n                        \"saldoPosterior\": \"87.00\",\n                        \"descripcion\": \"Débito en efectivo 6\",\n                        \"referencia\": null,\n                        \"estado\": \"true\"\n                    },\n                    {\n                        \"id\": \"11\",\n                        \"idCuenta\": null,\n                        \"numeroCuenta\": \"196313809437\",\n                        \"nombreCliente\": \"Taty Montenegro Actualizado\",\n                        \"fecha\": \"2025-09-28T13:06:09.542818Z\",\n                        \"tipoMovimiento\": \"Débito\",\n                        \"valor\": \"7.00\",\n                        \"saldoAnterior\": \"100.00\",\n                        \"saldoPosterior\": \"93.00\",\n                        \"descripcion\": \"Débito en efectivo 7\",\n                        \"referencia\": null,\n                        \"estado\": \"true\"\n                    },\n                    {\n                        \"id\": \"10\",\n                        \"idCuenta\": null,\n                        \"numeroCuenta\": \"196313809437\",\n                        \"nombreCliente\": \"Taty Montenegro Actualizado\",\n                        \"fecha\": \"2025-09-28T12:57:25.79414Z\",\n                        \"tipoMovimiento\": \"Débito\",\n                        \"valor\": \"5.00\",\n                        \"saldoAnterior\": \"105.00\",\n                        \"saldoPosterior\": \"100.00\",\n                        \"descripcion\": \"Débito en efectivo 5\",\n                        \"referencia\": null,\n                        \"estado\": \"true\"\n                    },\n                    {\n                        \"id\": \"9\",\n                        \"idCuenta\": null,\n                        \"numeroCuenta\": \"196313809437\",\n                        \"nombreCliente\": \"Taty Montenegro Actualizado\",\n                        \"fecha\": \"2025-09-28T12:50:52.867527Z\",\n                        \"tipoMovimiento\": \"Débito\",\n                        \"valor\": \"25.00\",\n                        \"saldoAnterior\": \"130.00\",\n                        \"saldoPosterior\": \"105.00\",\n                        \"descripcion\": \"Débito en efectivo 3\",\n                        \"referencia\": null,\n                        \"estado\": \"true\"\n                    },\n                    {\n                        \"id\": \"8\",\n                        \"idCuenta\": null,\n                        \"numeroCuenta\": \"196313809437\",\n                        \"nombreCliente\": \"Taty Montenegro Actualizado\",\n                        \"fecha\": \"2025-09-28T12:49:46.359306Z\",\n                        \"tipoMovimiento\": \"Débito\",\n                        \"valor\": \"20.00\",\n                        \"saldoAnterior\": \"150.00\",\n                        \"saldoPosterior\": \"130.00\",\n                        \"descripcion\": \"Débito en efectivo 3\",\n                        \"referencia\": null,\n                        \"estado\": \"true\"\n                    },\n                    {\n                        \"id\": \"7\",\n                        \"idCuenta\": null,\n                        \"numeroCuenta\": \"196313809437\",\n                        \"nombreCliente\": \"Taty Montenegro Actualizado\",\n                        \"fecha\": \"2025-09-28T12:40:34.388872Z\",\n                        \"tipoMovimiento\": \"Débito\",\n                        \"valor\": \"20.00\",\n                        \"saldoAnterior\": \"170.00\",\n                        \"saldoPosterior\": \"150.00\",\n                        \"descripcion\": \"Débito en efectivo 2\",\n                        \"referencia\": null,\n                        \"estado\": \"true\"\n                    },\n                    {\n                        \"id\": \"6\",\n                        \"idCuenta\": null,\n                        \"numeroCuenta\": \"196313809437\",\n                        \"nombreCliente\": \"Taty Montenegro Actualizado\",\n                        \"fecha\": \"2025-09-28T12:37:41.772007Z\",\n                        \"tipoMovimiento\": \"Débito\",\n                        \"valor\": \"20.00\",\n                        \"saldoAnterior\": \"190.00\",\n                        \"saldoPosterior\": \"170.00\",\n                        \"descripcion\": \"Débito en efectivo\",\n                        \"referencia\": null,\n                        \"estado\": \"true\"\n                    },\n                    {\n                        \"id\": \"5\",\n                        \"idCuenta\": null,\n                        \"numeroCuenta\": \"196313809437\",\n                        \"nombreCliente\": \"Taty Montenegro Actualizado\",\n                        \"fecha\": \"2025-09-28T12:34:26.0613Z\",\n                        \"tipoMovimiento\": \"Débito\",\n                        \"valor\": \"20.00\",\n                        \"saldoAnterior\": \"210.00\",\n                        \"saldoPosterior\": \"190.00\",\n                        \"descripcion\": \"Débito en efectivo\",\n                        \"referencia\": null,\n                        \"estado\": \"true\"\n                    },\n                    {\n                        \"id\": \"4\",\n                        \"idCuenta\": null,\n                        \"numeroCuenta\": \"196313809437\",\n                        \"nombreCliente\": \"Taty Montenegro Actualizado\",\n                        \"fecha\": \"2025-09-28T07:25:28.920377Z\",\n                        \"tipoMovimiento\": \"Débito\",\n                        \"valor\": \"1600.00\",\n                        \"saldoAnterior\": \"1810.00\",\n                        \"saldoPosterior\": \"210.00\",\n                        \"descripcion\": \"Débito en efectivo\",\n                        \"referencia\": null,\n                        \"estado\": \"true\"\n                    },\n                    {\n                        \"id\": \"3\",\n                        \"idCuenta\": null,\n                        \"numeroCuenta\": \"196313809437\",\n                        \"nombreCliente\": \"Taty Montenegro Actualizado\",\n                        \"fecha\": \"2025-09-28T07:22:10.798771Z\",\n                        \"tipoMovimiento\": \"Crédito\",\n                        \"valor\": \"600.00\",\n                        \"saldoAnterior\": \"1210.00\",\n                        \"saldoPosterior\": \"1810.00\",\n                        \"descripcion\": \"Depósito en efectivo\",\n                        \"referencia\": null,\n                        \"estado\": \"true\"\n                    },\n                    {\n                        \"id\": \"2\",\n                        \"idCuenta\": null,\n                        \"numeroCuenta\": \"196313809437\",\n                        \"nombreCliente\": \"Taty Montenegro Actualizado\",\n                        \"fecha\": \"2025-09-28T07:14:36.293894Z\",\n                        \"tipoMovimiento\": \"Crédito\",\n                        \"valor\": \"600.00\",\n                        \"saldoAnterior\": \"610.00\",\n                        \"saldoPosterior\": \"1210.00\",\n                        \"descripcion\": \"Depósito en efectivo\",\n                        \"referencia\": null,\n                        \"estado\": \"true\"\n                    },\n                    {\n                        \"id\": \"1\",\n                        \"idCuenta\": null,\n                        \"numeroCuenta\": \"196313809437\",\n                        \"nombreCliente\": \"Taty Montenegro Actualizado\",\n                        \"fecha\": \"2025-09-28T05:07:38.938293Z\",\n                        \"tipoMovimiento\": \"Crédito\",\n                        \"valor\": \"600.00\",\n                        \"saldoAnterior\": \"10.00\",\n                        \"saldoPosterior\": \"610.00\",\n                        \"descripcion\": \"Depósito en efectivo\",\n                        \"referencia\": null,\n                        \"estado\": \"true\"\n                    }\n                ]\n            },\n            {\n                \"numeroCuenta\": \"192389192136\",\n                \"tipoCuenta\": \"Corriente\",\n                \"resumenCuenta\": {\n                    \"saldoInicial\": 10,\n                    \"totalMovimientos\": 1,\n                    \"saldoFinal\": \"8.00\"\n                },\n                \"movimientos\": [\n                    {\n                        \"id\": \"17\",\n                        \"idCuenta\": null,\n                        \"numeroCuenta\": \"192389192136\",\n                        \"nombreCliente\": \"Taty Montenegro Actualizado\",\n                        \"fecha\": \"2025-09-28T17:14:22.984062Z\",\n                        \"tipoMovimiento\": \"Débito\",\n                        \"valor\": \"2.00\",\n                        \"saldoAnterior\": \"10.00\",\n                        \"saldoPosterior\": \"8.00\",\n                        \"descripcion\": \"Débito en efectivo 11\",\n                        \"referencia\": null,\n                        \"estado\": \"true\"\n                    }\n                ]\n            }\n        ]\n    },\n    \"message\": \"Reporte generado exitosamente\"\n}"
+						},
+						{
+							"name": "Generar Reporte PDF OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8082/reportes?clienteId=1&fechaInicio=2025-09-27&fechaFin=2025-09-28&formato=PDF",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"reportes"
+									],
+									"query": [
+										{
+											"key": "clienteId",
+											"value": "1"
+										},
+										{
+											"key": "fechaInicio",
+											"value": "2025-09-27"
+										},
+										{
+											"key": "fechaFin",
+											"value": "2025-09-28"
+										},
+										{
+											"key": "formato",
+											"value": "PDF"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 28 Sep 2025 18:37:49 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"contentType\": \"application/pdf\",\n        \"filename\": \"reporte-estado-cuenta.pdf\",\n        \"data\": \"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0hrGhywcXWsNC6OHVlsWNsa2kde20LUu8HC0LXY8eXqMsikOzqYYuJhi4GKKgYspDs6mOHKvfBRNsfDZFAdnUxycTXFwNsXCZ1MseSK2sikOzqYYuJhi4GKKgYspDs6mOPJEDLIpDs6mGLiYYuBiioGLKQ7Opjhyr5y8KFj4bIqDsykOzqY4OJti4bMpCt+Nm1SrcT1qZaIKXVqa3+frEwHdDrrduEXngxHGwRuMg8behN7q5YSP00QbAgKE9yOc9u9MT2uclhDRHO5Pv+dsZTBrvj08nvaP+0/Hw9pQlr39cPp5/+3Ln/uHw4pyDNN+I8q680abCJ29oM7jWd8Eyogep5VIGG8/H47Hww/6hjF+2pL0DNAC0Hmr9bQ2VxJan49+2qOUP6y/MGbmtsZvL+K3PfrlBOb4wWsDIMRPNLn47Zb48Yr4ibIcv63HTxir8dMzyPGvJCTGv+KRj19vjR/+xQ+hR9djXEz4mOPvEEyQfv1Ek4sfNsRfZDfFT5Tl+KEeP2Gsxk/PIMdP5z3IBaCZMhJjamFjAby/KAD2GpYTtqz/Loag+QJQTaYARVMugN1eAKosFqDoCwWgjLUCrJxBLACdr+S/IhCFApitBcB5AbTtzfIPwEMuAHYmdlYoANHkCoBbCgBXFIAoywXAegEIY7UA9AxyAch8rQBUQNgAbusF0P2/AILrUwfM8i/AlQtgyj91gC8A1WQK4LZcAN0VF0CqLBbA1S+AlLFWgJUziAWg85UCrLwwV/gLDHyUrwplbmRzdHJlYW0KZW5kb2JqCjYgMCBvYmoKPDwvQ29udGVudHMgNSAwIFIvVHlwZS9QYWdlL1Jlc291cmNlczw8L0ZvbnQ8PC9GMSAxIDAgUj4+Pj4vUGFyZW50IDMgMCBSL01lZGlhQm94WzAgMCA1OTUgODQyXT4+CmVuZG9iagoxIDAgb2JqCjw8L1N1YnR5cGUvVHlwZTEvVHlwZS9Gb250L0Jhc2VGb250L0hlbHZldGljYS9FbmNvZGluZy9XaW5BbnNpRW5jb2Rpbmc+PgplbmRvYmoKMyAwIG9iago8PC9LaWRzWzQgMCBSIDYgMCBSXS9UeXBlL1BhZ2VzL0NvdW50IDI+PgplbmRvYmoKNyAwIG9iago8PC9UeXBlL0NhdGFsb2cvUGFnZXMgMyAwIFI+PgplbmRvYmoKOCAwIG9iago8PC9Nb2REYXRlKEQ6MjAyNTA5MjgxMzM3NDktMDUnMDAnKS9DcmVhdGlvbkRhdGUoRDoyMDI1MDkyODEzMzc0OS0wNScwMCcpL1Byb2R1Y2VyKE9wZW5QREYgMS4zLjMwKT4+CmVuZG9iagp4cmVmCjAgOQowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDI1MDcgMDAwMDAgbiAKMDAwMDAwMDAxNSAwMDAwMCBuIAowMDAwMDAyNTk1IDAwMDAwIG4gCjAwMDAwMDE1MTcgMDAwMDAgbiAKMDAwMDAwMTYyOSAwMDAwMCBuIAowMDAwMDAyMzk1IDAwMDAwIG4gCjAwMDAwMDI2NTIgMDAwMDAgbiAKMDAwMDAwMjY5NyAwMDAwMCBuIAp0cmFpbGVyCjw8L0luZm8gOCAwIFIvSUQgWzw5NjI5ZDc1YTVhMDI5MTcxOWYzY2QyY2NmMzc3NWFhZT48NDZlM2JjMDMzZTE5NDVmNGU2ODFkNmJiMmRmM2IyZjg+XS9Sb290IDcgMCBSL1NpemUgOT4+CnN0YXJ0eHJlZgoyODEzCiUlRU9GCg==\"\n    },\n    \"message\": \"Reporte PDF generado exitosamente\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
