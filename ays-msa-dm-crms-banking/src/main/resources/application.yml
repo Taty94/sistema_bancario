@@ -5,7 +5,7 @@ spring:
   application:
     name: ays-msa-dm-crms-banking
   datasource:
-    url: ${DATASOURCE_URL:jdbc:postgresql://mi-postgres-db:5432/BDD_SISTEMA_BANCARIO}
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/BDD_SISTEMA_BANCARIO}
     username: postgres
     password: admin1234
     driver-class-name: org.postgresql.Driver
