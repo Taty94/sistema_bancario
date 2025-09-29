@@ -1,0 +1,40 @@
+server:
+  port: 8082
+  environment-app: "environment - local"
+spring:
+  application:
+    name: ays-msa-dm-crms-banking
+  datasource:
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/BDD_SISTEMA_BANCARIO}
+    username: ${POSTGRESQL_USERNAME_TOPT:postgres}
+    password: ${POSTGRESQL_PASSWORD_TOPT:admin1234}
+    driver-class-name: org.postgresql.Driver
+  hikari:
+    schema: public
+    connection-init-sql: select 1
+    connection-timeout: ${CONNECTION_TIMEOUT:3000}
+    minimum-idle: 10
+    maximum-pool-size: 60
+    idle-timeout: 20000
+    max-lifetime: 5
+    auto-commit: true
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    generate-ddl: false
+
+logging:
+  auditor:
+    mode: 'CONSOLE'
+    obfuscation:
+      fields: '(password)'
+      enable: true
+      character: '*****************'
+      obfuscation-type: REQUEST-RESPONSE
+control:
+  errors:
+    trace: false

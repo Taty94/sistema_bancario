@@ -1,0 +1,237 @@
+-- =====================================================
+-- MODELO FÍSICO - SISTEMA BANCARIO POSTGRESQL
+-- =====================================================
+
+
+-- (1) Ejecuta este bloque SOLO para crear la base de datos (en una pestaña aparte):
+--
+-- CREATE DATABASE BDD_SISTEMA_BANCARIO
+--     WITH ENCODING = 'UTF8'
+--     LC_COLLATE = 'es_ES.UTF-8'
+--     LC_CTYPE = 'es_ES.UTF-8';
+-- CREATE DATABASE BDD_SISTEMA_BANCARIO
+--     WITH ENCODING = 'UTF8'
+--     LC_COLLATE = 'es_ES.UTF-8'
+--     LC_CTYPE = 'es_ES.UTF-8'
+--     TEMPLATE template0;
+	
+-- 	CREATE DATABASE BDD_SISTEMA_BANCARIO
+--     WITH ENCODING = 'UTF8'
+--     LC_COLLATE = 'Spanish_Ecuador.1252'
+--     LC_CTYPE = 'Spanish_Ecuador.1252';
+
+-- Luego selecciona la base de datos BDD_SISTEMA_BANCARIO en el panel izquierdo de pgAdmin
+-- y ejecuta el resto del script a continuación:
+
+-- =====================================================
+-- TABLA: SIS_PERSONA
+-- Descripción: Almacena datos personales básicos
+-- =====================================================
+CREATE TABLE SIS_PERSONA (
+    ID_PERSONA SERIAL,
+    NOMBRE VARCHAR(50) NOT NULL,
+    APELLIDO VARCHAR(50) NOT NULL,
+    GENERO VARCHAR(10) NOT NULL 
+        CHECK (GENERO IN ('Masculino', 'Femenino', 'Otro')),
+    EDAD INTEGER NOT NULL 
+        CHECK (EDAD BETWEEN 18 AND 120),
+    TIPO_IDENTIFICACION VARCHAR(10) NOT NULL
+        CHECK (TIPO_IDENTIFICACION IN ('Cedula', 'Pasaporte', 'RUC')),
+    IDENTIFICACION VARCHAR(20) NOT NULL,
+    CALLE_PRINCIPAL VARCHAR(100),
+    CALLE_SECUNDARIA VARCHAR(100),
+    NUMERO_CASA VARCHAR(10),
+    CIUDAD VARCHAR(50),
+    PROVINCIA VARCHAR(50),
+    TELEFONO VARCHAR(15),
+    FECHA_CREACION TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FECHA_ACTUALIZACION TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    -- Constraints nombrados
+    CONSTRAINT PK_SIS_PERSONA 
+        PRIMARY KEY (ID_PERSONA),
+    CONSTRAINT UK_SIS_PERSONA_TIPO_IDENTIFICACION 
+        UNIQUE (TIPO_IDENTIFICACION, IDENTIFICACION),
+    
+    -- Validaciones específicas por tipo de identificación
+    CONSTRAINT CHK_SIS_PERSONA_CEDULA_FORMAT
+        CHECK (
+            TIPO_IDENTIFICACION != 'Cedula' OR 
+            (LENGTH(IDENTIFICACION) = 10 AND IDENTIFICACION ~ '^[0-9]+$')
+        ),
+    CONSTRAINT CHK_SIS_PERSONA_RUC_FORMAT
+        CHECK (
+            TIPO_IDENTIFICACION != 'RUC' OR 
+            (LENGTH(IDENTIFICACION) = 13 AND IDENTIFICACION ~ '^[0-9]+$')
+        ),
+    CONSTRAINT CHK_SIS_PERSONA_PASAPORTE_FORMAT
+        CHECK (
+            TIPO_IDENTIFICACION != 'Pasaporte' OR 
+            (LENGTH(IDENTIFICACION) BETWEEN 6 AND 20)
+        )
+);
+
+-- Comentarios de documentación
+COMMENT ON TABLE SIS_PERSONA IS 'Datos personales básicos de individuos con direcciones normalizadas';
+COMMENT ON COLUMN SIS_PERSONA.ID_PERSONA IS 'Clave primaria sintética';
+COMMENT ON COLUMN SIS_PERSONA.APELLIDO IS 'Apellidos completos de la persona';
+COMMENT ON COLUMN SIS_PERSONA.TIPO_IDENTIFICACION IS 'Tipo: Cedula, Pasaporte o RUC';
+COMMENT ON COLUMN SIS_PERSONA.IDENTIFICACION IS 'Número de identificación único según tipo';
+COMMENT ON COLUMN SIS_PERSONA.CALLE_PRINCIPAL IS 'Calle principal de la dirección';
+COMMENT ON COLUMN SIS_PERSONA.CALLE_SECUNDARIA IS 'Calle secundaria o intersección';
+COMMENT ON COLUMN SIS_PERSONA.NUMERO_CASA IS 'Número de casa o edificio';
+COMMENT ON COLUMN SIS_PERSONA.CIUDAD IS 'Ciudad de residencia';
+COMMENT ON COLUMN SIS_PERSONA.PROVINCIA IS 'Provincia o estado';
+
+-- =====================================================
+-- TABLA: SIS_CLIENTE  
+-- Descripción: Extiende persona con datos bancarios
+-- =====================================================
+
+
+CREATE TABLE SIS_CLIENTE (
+    ID_PERSONA INTEGER PRIMARY KEY REFERENCES SIS_PERSONA(ID_PERSONA),
+    CLIENTE_ID VARCHAR(50) NOT NULL UNIQUE,
+    CONTRASENA VARCHAR(255) NOT NULL,
+    ESTADO BOOLEAN NOT NULL DEFAULT true,
+    FECHA_CREACION TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FECHA_ACTUALIZACION TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Comentarios de documentación
+COMMENT ON TABLE SIS_CLIENTE IS 'Clientes bancarios con credenciales';
+COMMENT ON COLUMN SIS_CLIENTE.CLIENTE_ID IS 'Identificador único del cliente';
+
+-- =====================================================
+-- TABLA: SIS_CUENTA
+-- Descripción: Cuentas bancarias de clientes
+-- =====================================================
+CREATE TABLE SIS_CUENTA (
+    ID_CUENTA SERIAL,
+    NUMERO_CUENTA VARCHAR(20) NOT NULL,
+    TIPO_CUENTA VARCHAR(10) NOT NULL 
+        CHECK (TIPO_CUENTA IN ('Ahorros', 'Corriente')),
+    SALDO_INICIAL DECIMAL(15,2) NOT NULL 
+        CHECK (SALDO_INICIAL >= 0),
+    SALDO_ACTUAL DECIMAL(15,2) NOT NULL DEFAULT 0
+        CHECK (SALDO_ACTUAL >= 0),
+    ESTADO BOOLEAN NOT NULL DEFAULT true,
+    ID_PERSONA INTEGER NOT NULL,
+    FECHA_CREACION TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FECHA_ACTUALIZACION TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    -- Constraints nombrados
+    CONSTRAINT PK_SIS_CUENTA 
+        PRIMARY KEY (ID_CUENTA),
+    CONSTRAINT UK_SIS_CUENTA_NUMERO_CUENTA 
+        UNIQUE (NUMERO_CUENTA),
+    CONSTRAINT FK_SIS_CUENTA_SIS_CLIENTE 
+        FOREIGN KEY (ID_PERSONA) 
+        REFERENCES SIS_CLIENTE(ID_PERSONA)
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- Comentarios de documentación
+COMMENT ON TABLE SIS_CUENTA IS 'Cuentas bancarias (Ahorros/Corriente)';
+COMMENT ON COLUMN SIS_CUENTA.SALDO_ACTUAL IS 'Saldo actualizado con movimientos';
+
+-- =====================================================
+-- TABLA: SIS_MOVIMIENTO
+-- Descripción: Transacciones de cuentas bancarias
+-- =====================================================
+CREATE TABLE SIS_MOVIMIENTO (
+    ID_MOVIMIENTO SERIAL,
+    ID_CUENTA INTEGER NOT NULL,
+    FECHA TIMESTAMP NOT NULL,
+    TIPO_MOVIMIENTO VARCHAR(10) NOT NULL 
+        CHECK (TIPO_MOVIMIENTO IN ('Débito', 'Crédito')),
+    VALOR DECIMAL(15,2) NOT NULL,
+    SALDO_ANTERIOR DECIMAL(15,2) NOT NULL,
+    SALDO_POSTERIOR DECIMAL(15,2) NOT NULL,
+    DESCRIPCION VARCHAR(200),
+    REFERENCIA VARCHAR(50),
+    ESTADO BOOLEAN NOT NULL DEFAULT true,
+    FECHA_CREACION TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    -- Constraints nombrados
+    CONSTRAINT PK_SIS_MOVIMIENTO 
+        PRIMARY KEY (ID_MOVIMIENTO),
+    CONSTRAINT FK_SIS_MOVIMIENTO_SIS_CUENTA 
+        FOREIGN KEY (ID_CUENTA) 
+        REFERENCES SIS_CUENTA(ID_CUENTA)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT CHK_SIS_MOVIMIENTO_SALDO_CONSISTENCIA
+        CHECK (
+            (TIPO_MOVIMIENTO = 'Crédito' AND SALDO_POSTERIOR = SALDO_ANTERIOR + VALOR) OR
+            (TIPO_MOVIMIENTO = 'Débito' AND SALDO_POSTERIOR = SALDO_ANTERIOR - ABS(VALOR))
+        )
+);
+
+-- Comentarios de documentación
+COMMENT ON TABLE SIS_MOVIMIENTO IS 'Historial de transacciones bancarias';
+COMMENT ON COLUMN SIS_MOVIMIENTO.VALOR IS 'Créditos positivos, débitos negativos';
+
+-- =====================================================
+-- ÍNDICES DE OPTIMIZACIÓN
+-- =====================================================
+
+-- Índices en claves foráneas (para JOINs rápidos)
+CREATE INDEX IDX_SIS_CLIENTE_ID_PERSONA 
+    ON SIS_CLIENTE(ID_PERSONA);
+CREATE INDEX IDX_SIS_CUENTA_ID_PERSONA 
+    ON SIS_CUENTA(ID_PERSONA);
+CREATE INDEX IDX_SIS_MOVIMIENTO_ID_CUENTA 
+    ON SIS_MOVIMIENTO(ID_CUENTA);
+
+-- Índices en campos de búsqueda frecuente
+CREATE INDEX IDX_SIS_PERSONA_NOMBRE 
+    ON SIS_PERSONA(NOMBRE);
+CREATE INDEX IDX_SIS_PERSONA_APELLIDO 
+    ON SIS_PERSONA(APELLIDO);
+CREATE INDEX IDX_SIS_PERSONA_NOMBRE_APELLIDO 
+    ON SIS_PERSONA(NOMBRE, APELLIDO);
+CREATE INDEX IDX_SIS_PERSONA_IDENTIFICACION 
+    ON SIS_PERSONA(IDENTIFICACION);
+CREATE INDEX IDX_SIS_PERSONA_TIPO_IDENTIFICACION 
+    ON SIS_PERSONA(TIPO_IDENTIFICACION);
+CREATE INDEX IDX_SIS_PERSONA_CIUDAD 
+    ON SIS_PERSONA(CIUDAD);
+CREATE INDEX IDX_SIS_CUENTA_NUMERO_CUENTA 
+    ON SIS_CUENTA(NUMERO_CUENTA);
+
+-- Índices compuestos para reportes
+CREATE INDEX IDX_SIS_MOVIMIENTO_CUENTA_FECHA 
+    ON SIS_MOVIMIENTO(ID_CUENTA, FECHA DESC);
+CREATE INDEX IDX_SIS_MOVIMIENTO_TIPO_FECHA 
+    ON SIS_MOVIMIENTO(TIPO_MOVIMIENTO, FECHA DESC);
+CREATE INDEX IDX_SIS_MOVIMIENTO_FECHA 
+    ON SIS_MOVIMIENTO(FECHA DESC);
+
+-- =====================================================
+-- TRIGGERS PARA AUDITORÍA AUTOMÁTICA
+-- =====================================================
+
+-- Función para actualizar FECHA_ACTUALIZACION
+CREATE OR REPLACE FUNCTION actualizar_fecha_modificacion()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.FECHA_ACTUALIZACION = CURRENT_TIMESTAMP;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Triggers para auditoría
+CREATE TRIGGER TRG_SIS_PERSONA_ACTUALIZACION
+    BEFORE UPDATE ON SIS_PERSONA
+    FOR EACH ROW
+    EXECUTE FUNCTION actualizar_fecha_modificacion();
+
+CREATE TRIGGER TRG_SIS_CLIENTE_ACTUALIZACION
+    BEFORE UPDATE ON SIS_CLIENTE
+    FOR EACH ROW
+    EXECUTE FUNCTION actualizar_fecha_modificacion();
+
+CREATE TRIGGER TRG_SIS_CUENTA_ACTUALIZACION
+    BEFORE UPDATE ON SIS_CUENTA
+    FOR EACH ROW
+    EXECUTE FUNCTION actualizar_fecha_modificacion();
