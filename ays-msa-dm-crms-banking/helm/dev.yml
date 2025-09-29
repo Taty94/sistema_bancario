@@ -1,0 +1,72 @@
+# templates Helm diferentes para aks y ocp4
+
+variables:
+  own:
+    config: {}
+    secret: {}
+
+  common:
+    config:
+      - name: "ENVIRONMENT"
+    secret: {}
+
+global:
+  environment: "dev"
+  replicaCount: "1"
+  revisionHistoryLimit: "5"
+  minReadySeconds: "0"
+  version: "v1"
+
+container:
+  project: "dev"
+  registry: "bancopichinchaec.azurecr.io" 
+  tag: ""
+  pullPolicy: "IfNotPresent"
+  livenessProbe:
+    exec:
+      command:
+        - /bin/sh
+        - -c
+        - |
+          if [ "$(curl -s http://localhost:8080/actuator/health | cut -d "{" -f 2 | cut -d "}" -f 1 | cut -d "," -f 1 )" != '"status":"UP"' ];then exit 1; fi
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    failureThreshold: 12
+  readinessProbe:
+    exec:
+      command:
+        - /bin/sh
+        - -c
+        - |
+          if [ "$(curl -s http://localhost:8080/actuator/health | cut -d "{" -f 2 | cut -d "}" -f 1 | cut -d "," -f 1 )" != '"status":"UP"' ];then exit 1; fi
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    failureThreshold: 12
+  resources:
+    requests:
+      cpu: 25m
+      memory: 384Mi
+    limits:
+      memory: 768Mi
+  port:
+    - name: msa-port
+      servicePort: 80
+      containerPort: 8080
+      protocol: TCP
+  volumeMounts:
+    - name: init-sh
+      mountPath: /opt/build/init.sh
+      subPath: init.sh
+
+hpa:
+  minReplicas: 1
+  maxReplicas: 1
+  targetMemory: 768Mi
+
+volumes:
+  - name: init-sh
+    configMap:
+      name: configmap-${NAMESPACE}
+      items:
+        - key: init.sh
+          path: init.sh
