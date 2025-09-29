@@ -1,0 +1,125 @@
+.td-mov.debito span {
+    color: #ff3b3b !important;
+    font-weight: 600;
+}
+
+.td-mov.credito span {
+    color: #1ca02c !important;
+    font-weight: 600;
+}
+
+.tabla-movimientos {
+    width: 100%;
+    border-radius: 10px;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 1.2rem;
+    background: #f8fafd;
+}
+
+.th-mov {
+    background: #003087;
+    color: #ffe600;
+    font-weight: 700;
+    border-bottom: 3px solid #ffe600;
+    padding: 0.55rem 0.7rem;
+    text-align: left;
+}
+
+.td-mov {
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 1rem;
+    padding: 0.55rem 0.7rem;
+    text-align: left;
+}
+
+table {
+
+    th,
+    th {
+        .paginador {
+            button {
+                button:disabled {
+
+                    .movimientos-container {
+                        background: #fff;
+                        border-radius: 18px;
+                        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+                        padding: 2.2rem 2.5rem 2.5rem 2.5rem;
+                        margin: 2.5rem auto;
+                        max-width: 900px;
+                    }
+
+                    .movimientos-container h3 {
+                        color: #003087;
+                        margin-bottom: 1.2rem;
+                    }
+
+                    .movimientos-container table {
+                        width: 100%;
+                        border-radius: 10px;
+                        border-collapse: separate;
+                        border-spacing: 0;
+                        margin-bottom: 1.2rem;
+                        background: #f8fafd;
+                    }
+
+                    .movimientos-container th,
+                    .movimientos-container td {
+                        padding: 0.55rem 0.7rem;
+                        text-align: left;
+                    }
+
+                    .movimientos-container th {
+                        background: #003087;
+                        color: #ffe600;
+                        font-weight: 700;
+                        border-bottom: 3px solid #ffe600;
+                    }
+
+                    .movimientos-container td {
+                        border-bottom: 1px solid #e0e0e0;
+                        font-size: 1rem;
+                    }
+
+                    .paginador {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 0.5rem;
+                        margin-top: 1.5rem;
+                    }
+
+                    .paginador button {
+                        background: #fff;
+                        border: 1.5px solid #003087;
+                        color: #003087;
+                        border-radius: 6px;
+                        padding: 0.35rem 0.9rem;
+                        font-size: 1rem;
+                        font-weight: 600;
+                        cursor: pointer;
+                        transition: background 0.2s, color 0.2s;
+                    }
+
+                    .paginador button.active,
+                    .paginador button:focus {
+                        background: #003087;
+                        color: #ffe600;
+                    }
+
+                    .paginador button[disabled] {
+                        opacity: 0.5;
+                        cursor: not-allowed;
+                    }
+
+                    .paginador .total {
+                        margin-left: 1.2rem;
+                        color: #003087;
+                        font-size: 0.98rem;
+                    }
+                }
+            }
+        }
+    }
+}

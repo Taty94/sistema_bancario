@@ -1,0 +1,16 @@
+<h2>Detalle de Cliente</h2>
+<div *ngIf="loading">Cargando...</div>
+<div *ngIf="error && !loading" class="mensaje-error">{{ error }}</div>
+<div *ngIf="cliente && !loading">
+    <p><strong>ID:</strong> {{ cliente.id }}</p>
+    <p><strong>Nombre:</strong> {{ cliente.nombre }}</p>
+    <p><strong>Apellido:</strong> {{ cliente.apellido }}</p>
+    <p><strong>Género:</strong> {{ cliente.genero }}</p>
+    <p><strong>Edad:</strong> {{ cliente.edad }}</p>
+    <p><strong>Tipo Identificación:</strong> {{ cliente.tipoIdentificacion }}</p>
+    <p><strong>Identificación:</strong> {{ cliente.identificacion }}</p>
+    <p><strong>Dirección:</strong> {{ cliente.callePrincipal }}, {{ cliente.calleSecundaria }}, {{ cliente.ciudad }}, {{
+        cliente.provincia }}, {{ cliente.numeroCasa }}</p>
+    <p><strong>Teléfono:</strong> {{ cliente.telefono }}</p>
+    <p><strong>Estado:</strong> {{ cliente.estado ? 'Activo' : 'Inactivo' }}</p>
+</div>

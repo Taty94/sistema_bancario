@@ -1,0 +1,52 @@
+/* Basado en cliente-form.component.css */
+.cuenta-form {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(0, 48, 135, 0.08);
+    padding: 2rem 2.5rem 1.5rem 2.5rem;
+    margin-bottom: 2rem;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cuenta-form h3 {
+    color: #003087;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.1rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: #003087;
+    margin-bottom: 0.3rem;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.5rem 0.7rem;
+    border: 1.5px solid #003087;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #f7fafc;
+    color: #222;
+    outline: none;
+    margin-top: 0.1rem;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+}
+
+/* Estilos para formulario de cuenta */

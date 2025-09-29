@@ -1,0 +1,143 @@
+/* Toast styles for different types */
+.toast {
+    display: flex;
+    align-items: center;
+    min-width: 320px;
+    max-width: 480px;
+    margin: 1rem auto;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    font-size: 1rem;
+    position: fixed;
+    left: 50%;
+    top: 2rem;
+    transform: translateX(-50%);
+    z-index: 9999;
+    animation: fadeIn 0.3s;
+}
+
+.toast .icon {
+    margin-right: 1rem;
+    font-size: 1.4rem;
+}
+
+.toast-content {
+    flex: 1;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.toast.success {
+    background: #e6f4ea;
+    border: 1.5px solid #3bb273;
+    color: #256029;
+}
+
+.toast.error {
+    background: #fdeaea;
+    border: 1.5px solid #e53935;
+    color: #a31515;
+}
+
+.toast.info {
+    background: #eaf4fd;
+    border: 1.5px solid #1976d2;
+    color: #0d3056;
+}
+
+.toast.warning {
+    background: #fff7e6;
+    border: 1.5px solid #ffb300;
+    color: #7c5700;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Toast styles for different types */
+.toast {
+    display: flex;
+    align-items: center;
+    min-width: 320px;
+    max-width: 480px;
+    margin: 1rem auto;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    font-size: 1rem;
+    position: fixed;
+    left: 50%;
+    top: 2rem;
+    transform: translateX(-50%);
+    z-index: 9999;
+    animation: fadeIn 0.3s;
+}
+
+.toast .icon {
+    margin-right: 1rem;
+    font-size: 1.4rem;
+}
+
+.toast-content {
+    flex: 1;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.toast.success {
+    background: #e6f4ea;
+    border: 1.5px solid #3bb273;
+    color: #256029;
+}
+
+.toast.error {
+    background: #fdeaea;
+    border: 1.5px solid #e53935;
+    color: #a31515;
+}
+
+.toast.info {
+    background: #eaf4fd;
+    border: 1.5px solid #1976d2;
+    color: #0d3056;
+}
+
+.toast.warning {
+    background: #fff7e6;
+    border: 1.5px solid #ffb300;
+    color: #7c5700;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}

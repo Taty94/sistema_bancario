@@ -1,0 +1,89 @@
+<div class="movimientos-container">
+    <app-toast></app-toast>
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem;">
+        <h3 style="margin: 0; color: #003087; font-size: 1.45rem; font-weight: 700;">Listado de Movimientos</h3>
+        <div class="form-group" style="margin: 0;">
+            <label for="cuentaFiltro" style="font-weight: 600; color: #003087;">Cuenta
+                <select id="cuentaFiltro" [(ngModel)]="numeroCuenta" (change)="onCuentaChange()"
+                    style="margin-left: 0.5rem; padding: 0.25rem 0.7rem; border-radius: 6px; border: 1.2px solid #003087; font-size: 1rem;">
+                    <option value="">Todas</option>
+                    <option *ngFor="let cuenta of cuentas" [value]="cuenta.numeroCuenta">
+                        {{ cuenta.numeroCuenta }} - {{ cuenta.nombreCliente }}
+                    </option>
+                </select>
+            </label>
+        </div>
+    </div>
+    <div style="margin-bottom: 1.2rem;">
+        <button (click)="mostrarFormularioMovimiento()" [disabled]="!numeroCuenta || creandoMovimiento"
+            class="btn-accion">
+            Nuevo Movimiento
+        </button>
+    </div>
+    <div *ngIf="creandoMovimiento" class="form-movimiento-crear"
+        style="background: #f8fafd; border-radius: 10px; padding: 1.2rem 1.5rem; margin-bottom: 1.2rem; max-width: 500px;">
+        <h4 style="color: #003087; margin-top: 0;">Crear Movimiento</h4>
+        <div style="display: flex; flex-direction: column; gap: 0.7rem;">
+            <label>Tipo de Movimiento
+                <select [(ngModel)]="movimientoForm.tipoMovimiento"
+                    style="margin-left: 0.5rem; padding: 0.2rem 0.7rem; border-radius: 6px; border: 1.2px solid #003087; font-size: 1rem;">
+                    <option value="">Seleccione</option>
+                    <option value="Débito">Débito</option>
+                    <option value="Crédito">Crédito</option>
+                </select>
+            </label>
+            <label>Valor
+                <input type="number" min="0.01" step="0.01" [(ngModel)]="movimientoForm.valor"
+                    style="margin-left: 0.5rem; padding: 0.2rem 0.7rem; border-radius: 6px; border: 1.2px solid #003087; font-size: 1rem; width: 120px;" />
+            </label>
+            <label>Descripción
+                <input type="text" maxlength="100" [(ngModel)]="movimientoForm.descripcion"
+                    style="margin-left: 0.5rem; padding: 0.2rem 0.7rem; border-radius: 6px; border: 1.2px solid #003087; font-size: 1rem; width: 260px;" />
+            </label>
+            <div style="color: #ff3b3b; font-size: 0.98rem; min-height: 1.2em;">{{ crearMovimientoError }}</div>
+            <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                <button (click)="guardarMovimiento()" class="btn-accion"
+                    style="background: #003087; color: #ffe600;">Guardar</button>
+                <button (click)="cancelarCrearMovimiento()" class="btn-accion eliminar">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="loading">Cargando movimientos...</div>
+    <table *ngIf="!loading && movimientos.length > 0" class="tabla-movimientos">
+        <thead>
+            <tr>
+                <th class="th-mov">Fecha</th>
+                <th class="th-mov">Tipo</th>
+                <th class="th-mov">Valor</th>
+                <th class="th-mov">Saldo Anterior</th>
+                <th class="th-mov">Saldo Posterior</th>
+                <th class="th-mov">Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let mov of movimientos">
+                <td class="td-mov">{{ mov.fecha | date:'short' }}</td>
+                <td class="td-mov">{{ mov.tipoMovimiento }}</td>
+                <td class="td-mov"
+                    [ngClass]="{'debito': mov.tipoMovimiento === 'Débito', 'credito': mov.tipoMovimiento === 'Crédito'}">
+                    <span *ngIf="mov.tipoMovimiento === 'Débito'" style="color: #ff3b3b; font-weight: 600;">-{{
+                        mov.valor | currency:'USD' }}</span>
+                    <span *ngIf="mov.tipoMovimiento === 'Crédito'" style="color: #1ca02c; font-weight: 600;">+{{
+                        mov.valor | currency:'USD' }}</span>
+                    <span *ngIf="mov.tipoMovimiento !== 'Débito' && mov.tipoMovimiento !== 'Crédito'">{{ mov.valor |
+                        currency:'USD' }}</span>
+                </td>
+                <td class="td-mov">{{ mov.saldoAnterior | currency:'USD' }}</td>
+                <td class="td-mov">{{ mov.saldoPosterior | currency:'USD' }}</td>
+                <td class="td-mov">{{ mov.descripcion }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="!loading && movimientos.length === 0" style="color: #888; text-align: center; margin-top: 2rem;">No hay
+        movimientos para mostrar.</div>
+    <div class="paginador" *ngIf="totalPages > 1">
+        <button (click)="cambiarPagina(currentPage - 1)" [disabled]="currentPage === 0">Anterior</button>
+        <span>Página {{ currentPage + 1 }} de {{ totalPages }}</span>
+        <button (click)="cambiarPagina(currentPage + 1)" [disabled]="currentPage >= totalPages - 1">Siguiente</button>
+    </div>
+</div>

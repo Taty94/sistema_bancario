@@ -1,0 +1,91 @@
+/* Estilos base para la tabla y acciones de cuentas */
+.cuentas-container {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    padding: 2.2rem 2.5rem 2.5rem 2.5rem;
+    margin: 2.5rem auto;
+    max-width: 900px;
+}
+
+.cuentas-container h2 {
+    color: #003087;
+    margin-bottom: 1.2rem;
+}
+
+.cuentas-container table {
+    width: 100%;
+    border-radius: 10px;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 1.2rem;
+    background: #f8fafd;
+}
+
+.cuentas-container th,
+.cuentas-container td {
+    padding: 0.55rem 0.7rem;
+    text-align: left;
+}
+
+.cuentas-container th {
+    background: #003087;
+    color: #ffe600;
+    font-weight: 700;
+    border-bottom: 3px solid #ffe600;
+}
+
+.cuentas-container td {
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 1rem;
+}
+
+.cuentas-container button {
+    background: #ffe600;
+    color: #003087;
+    border: 1.2px solid #003087;
+    border-radius: 6px;
+    padding: 0.18rem 0.45rem;
+    font-size: 0.92rem;
+    font-weight: 500;
+    margin-right: 0.18rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    transition: background 0.2s, color 0.2s;
+    min-width: 28px;
+    min-height: 28px;
+}
+
+.cuentas-container button.eliminar {
+    background: #ff3b3b;
+    color: #fff;
+    border: none;
+}
+
+.cuentas-container button:active,
+.cuentas-container button:focus {
+    background: #003087;
+    color: #ffe600;
+}
+
+.no-cuentas {
+    color: #888;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+    padding: 2rem 2.5rem 1.5rem 2.5rem;
+    min-width: 320px;
+    max-width: 90vw;
+    min-height: 120px;
+    position: relative;
+    z-index: 1001;
+    text-align: left;
+}

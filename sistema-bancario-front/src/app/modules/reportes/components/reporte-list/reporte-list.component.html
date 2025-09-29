@@ -1,0 +1,96 @@
+<div class="reporte-container">
+    <h3 style="color: #003087; font-size: 1.45rem; font-weight: 700;">Reporte de Movimientos</h3>
+    <div class="filtros-reporte" style="display: flex; gap: 1.5rem; align-items: end; margin-bottom: 1.2rem;">
+        <div>
+            <label style="font-weight: 600; color: #003087;">Cliente
+                <select [(ngModel)]="clienteId" style="margin-left: 0.5rem; min-width: 180px;">
+                    <option value="">Seleccione</option>
+                    <option *ngFor="let cliente of clientes" [value]="cliente.id || cliente.id">
+                        {{ cliente.nombre }} {{ cliente.apellido }} ({{ cliente.clienteId || cliente.id }})
+                    </option>
+                </select>
+            </label>
+        </div>
+        <div>
+            <label style="font-weight: 600; color: #003087;">Fecha Inicio
+                <input type="date" [(ngModel)]="fechaInicio" style="margin-left: 0.5rem;" />
+            </label>
+        </div>
+        <div>
+            <label style="font-weight: 600; color: #003087;">Fecha Fin
+                <input type="date" [(ngModel)]="fechaFin" style="margin-left: 0.5rem;" />
+            </label>
+        </div>
+        <div>
+            <label style="font-weight: 600; color: #003087;">Formato
+                <select [(ngModel)]="formato" style="margin-left: 0.5rem;">
+                    <option value="json">JSON</option>
+                    <option value="pdf">PDF</option>
+                </select>
+            </label>
+        </div>
+        <button (click)="buscarReporte()" class="btn-accion" [disabled]="loading"
+            style="background: #003087; color: #ffe600;">Buscar</button>
+    </div>
+    <div *ngIf="error" style="color: #ff3b3b; margin-bottom: 1rem;">{{ error }}</div>
+    <div *ngIf="mensaje && !error" style="color: #1ca02c; margin-bottom: 1rem;">{{ mensaje }}</div>
+    <div *ngIf="loading">Cargando reporte...</div>
+    <div *ngIf="reporte && !loading">
+        <div style="margin-bottom: 1rem;">
+            <strong>Cliente:</strong> {{ reporte.cliente.nombre }} ({{ reporte.cliente.clienteId }})<br />
+            <strong>Desde:</strong> {{ reporte.fechaInicio }} <strong>Hasta:</strong> {{ reporte.fechaFin }}
+        </div>
+        <div style="margin-bottom: 1rem;">
+            <strong>Resumen General:</strong>
+            <ul>
+                <li>Total Créditos: <span style="color: #1ca02c; font-weight: 600;">{{
+                        reporte.resumenGeneral.totalCreditos | currency:'USD' }}</span></li>
+                <li>Total Débitos: <span style="color: #ff3b3b; font-weight: 600;">{{
+                        reporte.resumenGeneral.totalDebitos | currency:'USD' }}</span></li>
+                <li>Saldo Final: <span style="color: #003087; font-weight: 600;">{{ reporte.resumenGeneral.saldoFinal |
+                        currency:'USD' }}</span></li>
+            </ul>
+        </div>
+        <div *ngFor="let cuenta of reporte.cuentas" class="reporte-cuenta" style="margin-bottom: 2rem;">
+            <h4 style="color: #003087; margin-bottom: 0.5rem;">Cuenta: {{ cuenta.numeroCuenta }} ({{ cuenta.tipoCuenta
+                }})</h4>
+            <div style="margin-bottom: 0.5rem;">
+                <strong>Saldo Inicial:</strong> {{ cuenta.resumenCuenta.saldoInicial | currency:'USD' }}
+                <strong style="margin-left: 1.5rem;">Total Movimientos:</strong> {{
+                cuenta.resumenCuenta.totalMovimientos }}
+                <strong style="margin-left: 1.5rem;">Saldo Final:</strong> {{ cuenta.resumenCuenta.saldoFinal |
+                currency:'USD' }}
+            </div>
+            <table class="tabla-movimientos">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Tipo</th>
+                        <th>Valor</th>
+                        <th>Saldo Anterior</th>
+                        <th>Saldo Posterior</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let mov of cuenta.movimientos">
+                        <td>{{ mov.fecha | date:'short' }}</td>
+                        <td>{{ mov.tipoMovimiento }}</td>
+                        <td
+                            [ngClass]="{'debito': mov.tipoMovimiento === 'Débito', 'credito': mov.tipoMovimiento === 'Crédito'}">
+                            <span *ngIf="mov.tipoMovimiento === 'Débito'" style="color: #ff3b3b; font-weight: 600;">-{{
+                                mov.valor | currency:'USD' }}</span>
+                            <span *ngIf="mov.tipoMovimiento === 'Crédito'" style="color: #1ca02c; font-weight: 600;">+{{
+                                mov.valor | currency:'USD' }}</span>
+                            <span *ngIf="mov.tipoMovimiento !== 'Débito' && mov.tipoMovimiento !== 'Crédito'">{{
+                                mov.valor | currency:'USD' }}</span>
+                        </td>
+                        <td>{{ mov.saldoAnterior | currency:'USD' }}</td>
+                        <td>{{ mov.saldoPosterior | currency:'USD' }}</td>
+                        <td>{{ mov.descripcion }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

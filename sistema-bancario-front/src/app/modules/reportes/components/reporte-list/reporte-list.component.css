@@ -1,0 +1,65 @@
+.reporte-container {
+    background: #f8fafd;
+    border-radius: 10px;
+    padding: 1.5rem 2rem;
+    margin: 2rem auto;
+    max-width: 900px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+.filtros-reporte label {
+    display: block;
+    margin-bottom: 0.2rem;
+}
+
+.btn-accion {
+    background: #003087;
+    color: #ffe600;
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-accion:disabled {
+    background: #b0b0b0;
+    color: #fff;
+    cursor: not-allowed;
+}
+
+.tabla-movimientos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.7rem;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 0.98rem;
+}
+
+.tabla-movimientos th,
+.tabla-movimientos td {
+    padding: 0.5rem 0.7rem;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+}
+
+.tabla-movimientos th {
+    background: #003087;
+    color: #ffe600;
+    font-weight: 700;
+}
+
+.tabla-movimientos tr:last-child td {
+    border-bottom: none;
+}
+
+.debito {
+    color: #ff3b3b;
+}
+
+.credito {
+    color: #1ca02c;
+}

@@ -1,0 +1,14 @@
+<div *ngIf="visible" class="toast" [ngClass]="type">
+    <span class="icon">
+        <ng-container [ngSwitch]="type">
+            <span *ngSwitchCase="'success'">✔️</span>
+            <span *ngSwitchCase="'error'">❌</span>
+            <span *ngSwitchCase="'info'">ℹ️</span>
+            <span *ngSwitchCase="'warning'">⚠️</span>
+        </ng-container>
+    </span>
+    <span class="toast-content">
+        <strong *ngIf="code">{{ code }}:</strong> {{ message }}
+    </span>
+    <button class="close-btn" (click)="hide()">×</button>
+</div>

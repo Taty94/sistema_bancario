@@ -1,0 +1,44 @@
+<form [formGroup]="cuentaForm" (ngSubmit)="guardar()" class="cuenta-form">
+    <h3>Editar Cuenta</h3>
+    <div class="form-group" *ngIf="esEdicion">
+        <label>N° Cuenta</label>
+        <input formControlName="numeroCuenta" readonly />
+    </div>
+    <div class="form-group">
+        <label>Tipo de Cuenta</label>
+        <select formControlName="tipo">
+            <option value="">Seleccione tipo</option>
+            <option *ngFor="let tipo of tiposCuenta" [value]="tipo.value">{{ tipo.label }}</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Saldo</label>
+        <input formControlName="saldo" type="number" [readonly]="esEdicion" />
+    </div>
+    <div class="form-group">
+        <label>Estado</label>
+        <ng-container *ngIf="esEdicion; else soloActivo">
+            <input formControlName="estado" readonly />
+        </ng-container>
+        <ng-template #soloActivo>
+            <input formControlName="estado" value="Activa" readonly />
+        </ng-template>
+    </div>
+    <div class="form-group">
+        <label>Cliente</label>
+        <ng-container *ngIf="!esEdicion; else soloLecturaCliente">
+            <select formControlName="clienteId">
+                <option value="">Seleccione un cliente</option>
+                <option *ngFor="let cliente of clientes" [value]="cliente.id">{{ cliente.nombre }} {{ cliente.apellido
+                    }}</option>
+            </select>
+        </ng-container>
+        <ng-template #soloLecturaCliente>
+            <input formControlName="nombreCliente" readonly />
+        </ng-template>
+    </div>
+    <div class="form-actions">
+        <button type="submit" [disabled]="esEdicion && !cuentaForm.valid">Guardar</button>
+        <button type="button" (click)="cancelar.emit()">Cancelar</button>
+    </div>
+</form>

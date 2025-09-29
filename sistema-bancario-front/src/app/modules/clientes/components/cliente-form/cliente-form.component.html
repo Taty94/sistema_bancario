@@ -1,0 +1,73 @@
+<app-toast #toast></app-toast>
+<form (ngSubmit)="guardar()" class="cliente-form">
+    <h3>Nuevo Cliente</h3>
+    <div *ngIf="mensajeError" class="mensaje-error">{{ mensajeError }}</div>
+    <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" [(ngModel)]="cliente.nombre" name="nombre" required />
+    </div>
+    <div class="form-group">
+        <label>Apellido</label>
+        <input type="text" [(ngModel)]="cliente.apellido" name="apellido" required />
+    </div>
+    <div class="form-group">
+        <label>Género</label>
+        <select [(ngModel)]="cliente.genero" name="genero" required>
+            <option value="Femenino">Femenino</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Otro">Otro</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Edad</label>
+        <input type="number" [(ngModel)]="cliente.edad" name="edad" required />
+    </div>
+    <div class="form-group">
+        <label>Tipo de Identificación</label>
+        <select [(ngModel)]="cliente.tipoIdentificacion" name="tipoIdentificacion" required>
+            <option value="Cedula">Cédula</option>
+            <option value="Pasaporte">Pasaporte</option>
+            <option value="RUC">RUC</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Identificación</label>
+        <input type="text" [(ngModel)]="cliente.identificacion" name="identificacion" required />
+    </div>
+    <div class="form-group">
+        <label>Calle Principal</label>
+        <input type="text" [(ngModel)]="cliente.callePrincipal" name="callePrincipal" required />
+    </div>
+    <div class="form-group">
+        <label>Calle Secundaria</label>
+        <input type="text" [(ngModel)]="cliente.calleSecundaria" name="calleSecundaria" required />
+    </div>
+    <div class="form-group">
+        <label>Ciudad</label>
+        <input type="text" [(ngModel)]="cliente.ciudad" name="ciudad" required />
+    </div>
+    <div class="form-group">
+        <label>Provincia</label>
+        <input type="text" [(ngModel)]="cliente.provincia" name="provincia" required />
+    </div>
+    <div class="form-group">
+        <label>Número de Casa</label>
+        <input type="text" [(ngModel)]="cliente.numeroCasa" name="numeroCasa" required />
+    </div>
+    <div class="form-group">
+        <label>Contraseña</label>
+        <input type="password" [(ngModel)]="cliente.contrasena" name="contrasena" required />
+    </div>
+    <div class="form-group">
+        <label>Teléfono</label>
+        <input type="text" [(ngModel)]="cliente.telefono" name="telefono" required />
+    </div>
+    <div class="form-group">
+        <label>Estado</label>
+        <input type="text" value="Activo" disabled />
+    </div>
+    <div class="form-actions">
+        <button type="submit">Guardar</button>
+        <button type="button" class="cancelar" (click)="onCancelar()">Cancelar</button>
+    </div>
+</form>

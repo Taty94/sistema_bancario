@@ -1,0 +1,102 @@
+<app-toast #toast></app-toast>
+<div class="cuentas-container">
+    <h2>Listado de Cuentas</h2>
+    <button *ngIf="!formularioAbierto" (click)="abrirFormulario()">Nueva Cuenta</button>
+    <app-cuenta-form *ngIf="formularioAbierto" [cuentaEditar]="cuentaEditando" (cancelar)="cerrarFormulario()"
+        (guardada)="onCuentaGuardada($event)"></app-cuenta-form>
+    <div *ngIf="!formularioAbierto" class="filtros-cuentas"
+        style="margin-bottom: 1rem; display: flex; gap: 2rem; align-items: center;">
+        <label for="pageSize">Mostrar
+            <select id="pageSize" [(ngModel)]="pageSize" (change)="cambiarPageSize($event)">
+                <option [value]="2">2</option>
+                <option [value]="5">5</option>
+                <option [value]="10">10</option>
+                <option [value]="20">20</option>
+            </select>
+            por página
+        </label>
+        <label for="clienteFiltro">Cliente
+            <select id="clienteFiltro" [(ngModel)]="clienteFiltro" (change)="onClienteFiltroChange()">
+                <option value="">Todos</option>
+                <option *ngFor="let cliente of clientes" [value]="cliente.id">{{ cliente.nombre }} {{ cliente.apellido
+                    }}</option>
+            </select>
+        </label>
+    </div>
+    <table *ngIf="!formularioAbierto && cuentasFiltradas.length > 0">
+        <thead>
+            <tr>
+                <th>N° Cuenta</th>
+                <th>Tipo</th>
+                <th>Saldo</th>
+                <th>Estado</th>
+                <th>Nombre Cliente</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cuenta of cuentasFiltradas">
+                <td>{{ cuenta.numeroCuenta }}</td>
+                <td>{{ cuenta.tipo || 'N/A' }}</td>
+                <td>{{ cuenta.saldo != null ? (cuenta.saldo | currency:'USD') : 'N/A' }}</td>
+                <td>{{ cuenta.estado ? 'Activa' : 'Inactiva' }}</td>
+                <td>{{ cuenta.nombreCliente || '' }}</td>
+                <td>
+                    <button class="btn-accion" title="Ver Detalle" (click)="abrirModalDetalle(cuenta)">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path
+                                d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zm-8 4.5c-3.584 0-6.364-3.065-7.418-4.5C1.636 7.065 4.416 4 8 4s6.364 3.065 7.418 4.5C14.364 9.435 11.584 12.5 8 12.5z" />
+                            <path d="M8 5.5A2.5 2.5 0 1 0 8 10.5a2.5 2.5 0 0 0 0-5z" />
+                        </svg>
+                    </button>
+                    <button class="btn-accion" title="Editar" (click)="editarCuenta(cuenta)">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path
+                                d="M15.502 1.94a1.5 1.5 0 0 1 0 2.12l-1.439 1.439-2.12-2.12L13.382.94a1.5 1.5 0 0 1 2.12 0zM14.061 4.061l-2.12-2.12L3 10.879V13h2.121l8.94-8.939z" />
+                        </svg>
+                    </button>
+                    <button class="btn-accion eliminar" title="Eliminar" (click)="abrirModalEliminar(cuenta)"
+                        [disabled]="!cuenta.estado">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path
+                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5.5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6zm3 .5a.5.5 0 0 1 .5-.5.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6z" />
+                            <path fill-rule="evenodd"
+                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1 0-2h3.5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1H14.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3a.5.5 0 0 0-.5.5V4h12v-.5a.5.5 0 0 0-.5-.5h-11z" />
+                        </svg>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="!formularioAbierto && cuentasFiltradas.length === 0" class="no-cuentas">
+        No hay cuentas para mostrar.
+    </div>
+</div>
+
+<app-modal *ngIf="modalDetalleAbierto" (click)="cerrarModalDetalle()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+        <h3>Detalle de Cuenta</h3>
+        <ng-container *ngIf="cuentaSeleccionada; else cargandoDetalle">
+            <p><strong>N° Cuenta:</strong> {{ cuentaSeleccionada.numeroCuenta }}</p>
+            <p><strong>Tipo:</strong> {{ cuentaSeleccionada.tipo }}</p>
+            <p><strong>Saldo:</strong> {{ cuentaSeleccionada.saldo | currency:'USD' }}</p>
+            <p><strong>Estado:</strong> {{ cuentaSeleccionada.estado ? 'Activa' : 'Inactiva' }}</p>
+            <p><strong>Nombre Cliente:</strong> {{ cuentaSeleccionada.nombreCliente }}</p>
+        </ng-container>
+        <ng-template #cargandoDetalle>
+            <p>Cargando detalles...</p>
+        </ng-template>
+        <button (click)="cerrarModalDetalle()">Cerrar</button>
+    </div>
+</app-modal>
+
+<app-modal *ngIf="modalEliminarAbierto" (click)="cerrarModalEliminar()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+        <h3>¿Eliminar cuenta?</h3>
+        <p>¿Estás seguro que deseas eliminar la cuenta <strong>{{ cuentaAEliminar?.numeroCuenta }}</strong>?</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;">
+            <button (click)="confirmarEliminar()" class="eliminar">Eliminar</button>
+            <button (click)="cerrarModalEliminar()">Cancelar</button>
+        </div>
+    </div>
+</app-modal>

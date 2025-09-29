@@ -1,0 +1,31 @@
+<div class="layout">
+    <aside class="sidebar">
+        <div class="sidebar-title">BANCO</div>
+        <nav>
+            <ul>
+                <li>
+                    <button (click)="seccion = 'clientes'" [ngClass]="{active: seccion === 'clientes'}"
+                        class="menu-btn">Clientes</button>
+                </li>
+                <li>
+                    <button (click)="seccion = 'cuentas'" [ngClass]="{active: seccion === 'cuentas'}"
+                        class="menu-btn">Cuentas</button>
+                </li>
+                <li>
+                    <button (click)="seccion = 'movimientos'" [ngClass]="{active: seccion === 'movimientos'}"
+                        class="menu-btn">Movimientos</button>
+                </li>
+                <li>
+                    <button (click)="seccion = 'reportes'" [ngClass]="{active: seccion === 'reportes'}"
+                        class="menu-btn">Reportes</button>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+    <main class="main-content">
+        <app-cliente-list *ngIf="seccion === 'clientes'"></app-cliente-list>
+        <app-cuenta-list *ngIf="seccion === 'cuentas'"></app-cuenta-list>
+        <app-movimiento-list *ngIf="seccion === 'movimientos'"></app-movimiento-list>
+        <app-reporte-list *ngIf="seccion === 'reportes'"></app-reporte-list>
+    </main>
+</div>

@@ -1,0 +1,199 @@
+/* Modal overlay y centrado */
+app-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+    padding: 2rem 2.5rem 1.5rem 2.5rem;
+    min-width: 320px;
+    max-width: 90vw;
+    min-height: 120px;
+    position: relative;
+    z-index: 1001;
+    text-align: left;
+}
+
+.modal-content button {
+    margin-top: 1.5rem;
+}
+
+/* Paginador */
+.paginador {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.paginador button {
+    background: #fff;
+    border: 1.5px solid #003087;
+    color: #003087;
+    border-radius: 6px;
+    padding: 0.35rem 0.9rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.paginador button.active,
+.paginador button:focus {
+    background: #003087;
+    color: #ffe600;
+}
+
+.paginador button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.paginador .total {
+    margin-left: 1.2rem;
+    color: #003087;
+    font-size: 0.98rem;
+}
+
+button.eliminar {
+    background: #ff3b3b;
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    padding: 0.4rem 1.1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-right: 0.4rem;
+    transition: background 0.2s, color 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-accion {
+    background: #ffe600;
+    color: #003087;
+    border: 1.2px solid #003087;
+    border-radius: 6px;
+    padding: 0.18rem 0.45rem;
+    font-size: 0.92rem;
+    font-weight: 500;
+    margin-right: 0.18rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    transition: background 0.2s, color 0.2s;
+    min-width: 28px;
+    min-height: 28px;
+}
+
+.btn-accion svg {
+    display: block;
+    margin: 0;
+}
+
+.btn-accion.eliminar {
+    background: #ff3b3b;
+    color: #fff;
+    border: none;
+}
+
+.btn-accion:active,
+.btn-accion:focus {
+    background: #003087;
+    color: #ffe600;
+}
+
+button.eliminar:hover {
+    background: #c80000;
+}
+
+/* Estilos institucionales azul y amarillo para la tabla de clientes */
+
+h2 {
+    color: #003087;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 48, 135, 0.06);
+    overflow: hidden;
+}
+
+th,
+td {
+    padding: 0.85rem 1.1rem;
+    text-align: left;
+}
+
+/* Contenedor principal centrado y con fondo blanco */
+.clientes-container {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 32px rgba(0, 48, 135, 0.10);
+    padding: 2.5rem 2.2rem 2.2rem 2.2rem;
+    max-width: 900px;
+    margin: 2.5rem auto;
+}
+
+th {
+    background: #003087;
+    color: #fff;
+    font-weight: 700;
+    border-bottom: 3px solid #ffe600;
+    font-size: 1.05rem;
+}
+
+tr:nth-child(even) td {
+    background: #f7fafc;
+}
+
+tr:hover td {
+    background: #e6f0ff;
+}
+
+button {
+    padding: 0.4rem 1.1rem;
+    border: none;
+    border-radius: 7px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 0.4rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+button:not([disabled]):hover {
+    opacity: 0.92;
+}
+
+button {
+    background: linear-gradient(90deg, #ffe600 60%, #ffce00 100%);
+    color: #003087;
+    box-shadow: 0 1px 4px rgba(0, 48, 135, 0.07);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+button:active {
+    background: #ffe600;
+}

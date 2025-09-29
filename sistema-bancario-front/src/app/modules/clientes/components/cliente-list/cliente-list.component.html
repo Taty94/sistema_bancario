@@ -1,0 +1,106 @@
+<app-toast #toast></app-toast>
+<div class="clientes-container">
+    <h2>Listado de Clientes</h2>
+    <button *ngIf="!formularioAbierto" (click)="abrirFormulario()">Nuevo Cliente</button>
+    <app-cliente-form *ngIf="formularioAbierto" [clienteEditar]="clienteEditando" (cancelar)="cerrarFormulario()"
+        (guardado)="onClienteGuardado($event)"></app-cliente-form>
+    <div *ngIf="!formularioAbierto" class="filtros-clientes"
+        style="margin-bottom: 1rem; display: flex; gap: 2rem; align-items: center;">
+        <label for="pageSize">Mostrar
+            <select id="pageSize" [(ngModel)]="pageSize" (change)="cambiarPageSize($event)">
+                <option [value]="2">2</option>
+                <option [value]="5">5</option>
+                <option [value]="10">10</option>
+                <option [value]="20">20</option>
+            </select>
+            por página
+        </label>
+        <label for="estadoFiltro">Estado
+            <select id="estadoFiltro" [(ngModel)]="estadoFiltro" (change)="filtrarPorEstado()">
+                <option value="">Todos</option>
+                <option value="true">Activo</option>
+                <option value="false">Inactivo</option>
+            </select>
+        </label>
+    </div>
+    <table *ngIf="!formularioAbierto && clientesFiltrados.length > 0">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Identificación</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+                <!-- Agrega más columnas si lo necesitas -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cliente of clientesFiltrados">
+                <td>{{ cliente.nombre }}</td>
+                <td>{{ cliente.identificacion }}</td>
+                <td>{{ cliente.estado ? 'Activo' : 'Inactivo' }}</td>
+                <td>
+                    <button class="btn-accion" title="Ver Detalle" (click)="abrirModalDetalle(cliente)">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path
+                                d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zm-8 4.5c-3.584 0-6.364-3.065-7.418-4.5C1.636 7.065 4.416 4 8 4s6.364 3.065 7.418 4.5C14.364 9.435 11.584 12.5 8 12.5z" />
+                            <path d="M8 5.5A2.5 2.5 0 1 0 8 10.5a2.5 2.5 0 0 0 0-5z" />
+                        </svg>
+                    </button>
+                    <button class="btn-accion" title="Editar" (click)="editarCliente(cliente)">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path
+                                d="M15.502 1.94a1.5 1.5 0 0 1 0 2.12l-1.439 1.439-2.12-2.12L13.382.94a1.5 1.5 0 0 1 2.12 0zM14.061 4.061l-2.12-2.12L3 10.879V13h2.121l8.94-8.939z" />
+                        </svg>
+                    </button>
+                    <button class="btn-accion eliminar" title="Eliminar" (click)="abrirModalEliminar(cliente)"
+                        [disabled]="!cliente.estado">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path
+                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5.5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6zm3 .5a.5.5 0 0 1 .5-.5.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6z" />
+                            <path fill-rule="evenodd"
+                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1 0-2h3.5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1H14.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3a.5.5 0 0 0-.5.5V4h12v-.5a.5.5 0 0 0-.5-.5h-11z" />
+                        </svg>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="!formularioAbierto && clientesFiltrados.length === 0" class="no-clientes">
+        No hay clientes para mostrar.
+    </div>
+    <!-- Segunda barra de paginación eliminada -->
+</div>
+
+<app-modal *ngIf="modalDetalleAbierto" (click)="cerrarModalDetalle()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+        <h3>Detalle de Cliente</h3>
+        <ng-container *ngIf="clienteSeleccionado; else cargandoDetalle">
+            <p><strong>Nombre:</strong> {{ clienteSeleccionado.nombre }}</p>
+            <p><strong>Apellido:</strong> {{ clienteSeleccionado.apellido }}</p>
+            <p><strong>Género:</strong> {{ clienteSeleccionado.genero }}</p>
+            <p><strong>Edad:</strong> {{ clienteSeleccionado.edad }}</p>
+            <p><strong>Tipo Identificación:</strong> {{ clienteSeleccionado.tipoIdentificacion }}</p>
+            <p><strong>Identificación:</strong> {{ clienteSeleccionado.identificacion }}</p>
+            <p><strong>Teléfono:</strong> {{ clienteSeleccionado.telefono }}</p>
+            <p><strong>Dirección:</strong> {{ clienteSeleccionado.callePrincipal }} {{ clienteSeleccionado.numeroCasa
+                }}, {{ clienteSeleccionado.calleSecundaria }}, {{ clienteSeleccionado.ciudad }}, {{
+                clienteSeleccionado.provincia }}</p>
+            <p><strong>Estado:</strong> {{ clienteSeleccionado.estado ? 'Activo' : 'Inactivo' }}</p>
+        </ng-container>
+        <ng-template #cargandoDetalle>
+            <p>Cargando detalles...</p>
+        </ng-template>
+        <button (click)="cerrarModalDetalle()">Cerrar</button>
+    </div>
+</app-modal>
+
+<app-modal *ngIf="modalEliminarAbierto" (click)="cerrarModalEliminar()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+        <h3>¿Eliminar cliente?</h3>
+        <p>¿Estás seguro que deseas eliminar a <strong>{{ clienteAEliminar?.nombre }}</strong>?</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem;">
+            <button (click)="confirmarEliminar()" class="eliminar">Eliminar</button>
+            <button (click)="cerrarModalEliminar()">Cancelar</button>
+        </div>
+    </div>
+</app-modal>

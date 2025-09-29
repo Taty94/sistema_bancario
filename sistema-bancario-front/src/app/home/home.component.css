@@ -1,0 +1,91 @@
+.menu-btn {
+    width: 100%;
+    background: transparent;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.08rem;
+    border: none;
+    padding: 1rem 0 1rem 2rem;
+    text-align: left;
+    cursor: pointer;
+    border-left: 4px solid transparent;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.menu-btn.active,
+.menu-btn:focus,
+.menu-btn:hover:not(:disabled) {
+    background: #ffe600;
+    color: #003087;
+    border-left: 4px solid #003087;
+    outline: none;
+}
+
+.menu-btn.disabled,
+.menu-btn:disabled {
+    background: transparent;
+    color: #bfc9da;
+    cursor: not-allowed;
+    border-left: 4px solid transparent;
+}
+
+body,
+:host {
+    background: #f4f6fa;
+}
+
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 180px;
+    background: #003087;
+    color: #fff;
+    padding: 2.5rem 0 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    box-shadow: 2px 0 12px rgba(0, 48, 135, 0.07);
+}
+
+.sidebar-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 2.5rem;
+    color: #ffe600;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.sidebar nav li {
+    padding: 1rem 0 1rem 2rem;
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    border-left: 4px solid transparent;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.sidebar nav li.active,
+.sidebar nav li:hover {
+    background: #ffe600;
+    color: #003087;
+    border-left: 4px solid #003087;
+}
+
+.main-content {
+    flex: 1;
+    padding: 2.5rem 2rem;
+    background: #f4f6fa;
+    min-height: 100vh;
+}
